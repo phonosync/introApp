@@ -1,0 +1,9 @@
+flask
+flask_restful
+flask_cors
+python_dotenv
+pytest
+pycodestyle
+numpy
+sklearn
+joblib
