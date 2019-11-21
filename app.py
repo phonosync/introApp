@@ -12,7 +12,6 @@ load_dotenv()                                   # Load Runtime configuration
 app = Flask(__name__)                           #  Create a Flask WSGI application
 api = Api(app)                                  #  Create a Flask-RESTful API
 CORS(app)
-api = Api(app)
 
 
 # The resource classes are defined in a separate module: src.app_resources
