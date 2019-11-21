@@ -11,6 +11,8 @@ def store_model(model, m_path):
     :param m_path:
     :return:
     """
+    if not os.path.exists(m_path):
+        os.makedirs(m_path)
     joblib.dump(model, m_path)
 
 
