@@ -1,9 +1,10 @@
 import os
-from flask import Flask, redirect
-from flask_restful import Resource, Api
+from flask import Flask
+from flask_restful import Api
 from flask_cors import CORS
 from src.app_resources import Train
 from src.app_resources import Predict
+from src.app_resources import Base
 from dotenv import load_dotenv
 load_dotenv()                                   # Load Runtime configuration
 
@@ -14,12 +15,8 @@ CORS(app)
 api = Api(app)
 
 
-api.add_resource(Base, '/')                     #  Create a URL route to this resource
-
-
-class Base(Resource):                           #  Create a RESTful resource
-    def get(self):                              #  Create GET endpoint
-        return {'status': 'ok'}
+# The resource classes are defined in a separate module: src.app_resources
+api.add_resource(Base, '/')                     #  Create a URL route to the first resource
 
 api.add_resource(Train, '/train')
 

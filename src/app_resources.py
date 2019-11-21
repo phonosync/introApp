@@ -7,6 +7,11 @@ from src import linreg
 model_path = os.path.join('model', 'linreg.joblib')
 
 
+class Base(Resource):                           #  Create a RESTful resource
+    def get(self):                              #  Create GET endpoint
+        return {'status': 'ok'}
+
+
 class Train(Resource):
     """
     Train and store a new linear regression model
