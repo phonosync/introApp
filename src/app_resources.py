@@ -31,7 +31,7 @@ class Train(Resource):
             x_train = req_body['x']
             y_train = req_body['y']
             assert len(x_train) == len(y_train)
-        except KeyError:
+        except (KeyError, TypeError) as e:
             msg = "Failed to extract training data from request body"
             app.logger.exception(msg)
             return {'error': msg}, 400
