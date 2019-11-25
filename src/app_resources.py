@@ -18,6 +18,7 @@ class Train(Resource):
     """
 
     def post(self):
+        app.logger.info("Received post to train")
         try:
             req_body = request.get_json()
         except Exception as e:
@@ -39,6 +40,7 @@ class Train(Resource):
             app.logger.exception(msg)
             return {'error': msg}, 400
 
+        app.logger.info("Attempting to fit model")
         try:
             new_model = linreg.fit_model(x_train, y_train)
         except Exception as e:
@@ -46,12 +48,13 @@ class Train(Resource):
             app.logger.exception(e)
             return {'error': 'Failed to fit model'}, 500
 
+        app.logger.info("Training completed. Attempting to store model")
         try:
             linreg.store_model(new_model, model_path)
         except Exception as e:
             app.logger.exception(e)
             return {'error': 'Failed to store new model'}, 500
-
+        app.logger.info("Successfully stored new model.")
         return {'status': 'ok'}
 
 
